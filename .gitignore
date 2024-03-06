@@ -1,5 +1,5 @@
 # Added to omit created files
-/output/.
+/output/*
 
 # Compiled class file
 *.class
