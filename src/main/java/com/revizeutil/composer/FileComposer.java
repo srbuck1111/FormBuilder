@@ -27,7 +27,7 @@ public class FileComposer {
 
     public File composeEditForm() {
 
-        File writeFile = new File("formbuilder\\output\\"+formModule+"-"+formType+".jsp");
+        File writeFile = new File("FormBuilder\\output\\"+formModule+"-edit"+formType+".jsp");
         try {
             if (writeFile.createNewFile()) System.out.println("File Created.");
             else System.out.println("File Exists");
@@ -45,7 +45,7 @@ public class FileComposer {
             break;
             case "form":
             default:
-                refFile = new File("formbuilder\\src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\base.jsp");
+                refFile = new File("FormBuilder\\src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\base.jsp");
             break;
         }
 

@@ -36,20 +36,20 @@ public class Field {
         File refField;
         switch(this.fieldType) {
             case "text_area":
-                refField = new File("formbuilder\\src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\text-area.jsp");
+                refField = new File("FormBuilder\\src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\text-area.jsp");
             break;
             case "long_text":
-                refField = new File("formbuilder\\src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\long-text.jsp");
+                refField = new File("FormBuilder\\src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\long-text.jsp");
             break;
             case "image":
-                refField = new File("formbuilder\\src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\image.jsp");
+                refField = new File("FormBuilder\\src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\image.jsp");
             break;
             case "document":
-                refField = new File("formbuilder\\src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\document.jsp");
+                refField = new File("FormBuilder\\src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\document.jsp");
             break;
             case "text":
             default:
-                refField = new File("formbuilder\\src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\text.jsp");
+                refField = new File("FormBuilder\\src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\text.jsp");
             break;
         }
         try {
