@@ -16,8 +16,8 @@ import javax.swing.JTextField;
 
 public class EditField extends JPanel {
 
-    private JTextField fieldInput;
-    private JTextField titleInput;
+    private JTextField fieldInput = new JTextField();
+    private JTextField titleInput = new JTextField();
     JComboBox<String> typeInput;
     private JTextField helpInput;
 
@@ -36,7 +36,6 @@ public class EditField extends JPanel {
         add(delete);
 
         add(new JLabel("Field: "));
-        fieldInput = new JTextField();
         fieldInput.setPreferredSize(new Dimension(100,20));
         add(fieldInput);
 
@@ -47,7 +46,6 @@ public class EditField extends JPanel {
         add(typeInput);
 
         add(new JLabel("Title: "));
-        titleInput = new JTextField();
         titleInput.setPreferredSize(new Dimension(100,20));
         add(titleInput);
 
@@ -55,6 +53,12 @@ public class EditField extends JPanel {
         helpInput = new JTextField();
         helpInput.setPreferredSize(new Dimension(500,20));
         add(helpInput);
+    }
+
+    public EditField(String fieldName, String title) {
+        this();
+        setFieldInput(fieldName);
+        setTitleInput(title);
     }
 
     //Me too Man... Me too...
@@ -73,9 +77,19 @@ public class EditField extends JPanel {
     public String getTitle() {
         return titleInput.getText();
     }
+
+    public void setTitleInput(String title) {
+        this.titleInput.setText(title);
+        revalidate();
+    }
     
     public String getField() {
         return fieldInput.getText();
+    }
+
+    public void setFieldInput(String fieldInput) {
+        this.fieldInput.setText(fieldInput);
+        revalidate();
     }
     
     public String getType() {

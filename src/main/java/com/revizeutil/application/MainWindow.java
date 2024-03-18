@@ -2,6 +2,7 @@ package com.revizeutil.application;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 import com.revizeutil.composer.Field;
 import com.revizeutil.composer.FileComposer;
@@ -65,6 +67,18 @@ public class MainWindow extends JFrame {
                 }
             });
             footer.add(createFormButton);
+
+            JTextField importInput = new JTextField();
+            importInput.setPreferredSize(new Dimension(100,20));
+            footer.add(importInput);
+            JButton importButton = new JButton("Import");
+            importButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    importEditForm(importInput.getText());
+                }
+            });
+            footer.add(importButton);
         add(footer, BorderLayout.SOUTH);
 
     }
@@ -85,6 +99,17 @@ public class MainWindow extends JFrame {
             }
         }
         fc.composeEditForm();
+    }
+
+    private void importEditForm(String historyString) {
+        editFields.removeAll();
+        String[] fieldStrings = historyString.split(",");
+        for (String fieldString : fieldStrings) {
+            String fieldName = fieldString.substring(0,fieldString.indexOf("{"));
+            String fieldTitle = fieldString.substring(fieldString.indexOf("{")+1,fieldString.length()-1);
+            editFields.add(new EditField(fieldName,fieldTitle));
+        }
+        revalidate();
     }
 
 }
