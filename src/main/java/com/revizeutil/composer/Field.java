@@ -47,6 +47,8 @@ public class Field {
             while ((line = br.readLine()) != null) {
                 if (fieldName != null && line.contains("#FIELDNAME#")) line = line.replaceAll("#FIELDNAME#", fieldName);
                 if (fieldTitle != null && line.contains("#FIELDTITLE#")) line = line.replaceAll("#FIELDTITLE#", fieldTitle);
+                if (line.contains("#WIDTH#")) line = line.replaceAll("#WIDTH#", width == null ? "250" : width.toString());
+                if (line.contains("#HEIGHT#")) line = line.replaceAll("#HEIGHT#", height == null ? "250" : height.toString());
                 if (line.contains("#HELPTEXT#")) {
                     if (helpText == null) continue;
                     line = line.replaceAll("#HELPTEXT#", helpText);
