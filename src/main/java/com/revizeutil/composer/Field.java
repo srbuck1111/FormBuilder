@@ -33,25 +33,8 @@ public class Field {
         ArrayList<String> fieldStrings = new ArrayList<>();
         String line = null;
 
-        File refField;
-        switch(this.fieldType) {
-            case "text_area":
-                refField = new File("src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\text-area.jsp");
-            break;
-            case "long_text":
-                refField = new File("src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\long-text.jsp");
-            break;
-            case "image":
-                refField = new File("src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\image.jsp");
-            break;
-            case "document":
-                refField = new File("src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\document.jsp");
-            break;
-            case "text":
-            default:
-                refField = new File("src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\text.jsp");
-            break;
-        }
+        File refField = getFileRef();
+
         try {
             FileReader fr = new FileReader(refField);
             BufferedReader br = new BufferedReader(fr);
@@ -70,6 +53,23 @@ public class Field {
             e.printStackTrace();
         }
         return fieldStrings;
+    }
+
+    // helper method to assign the correct reference file based on the field type
+    private File getFileRef() {
+        switch(this.fieldType) {
+            case "text_area":
+                return new File("src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\text-area.jsp");
+            case "long_text":
+                return new File("src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\long-text.jsp");
+            case "image":
+                return new File("src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\image.jsp");
+            case "document":
+                return new File("src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\document.jsp");
+            case "text": default:
+                return new File("src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\text.jsp");
+        }
+
     }
 
     public String getFieldName() {
