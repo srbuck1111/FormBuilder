@@ -11,22 +11,28 @@ public class Field {
     private String fieldName;
     private String fieldType;
     private String helpText;
+    private Integer width;
+    private Integer height;
 
     public Field() {
-        new Field("test_title","Test Name","text");
-    }
-
-    public Field(String fieldName, String fieldTitle, String fieldType, String helpText) {
-        this.fieldTitle = fieldTitle;
-        this.fieldName = fieldName;
-        this.fieldType = fieldType;
-        if (helpText != null) this.helpText = helpText;
+        this("Test Name","test_field","text");
     }
 
     public Field(String fieldName, String fieldTitle, String fieldType) {
         this.fieldTitle = fieldTitle;
         this.fieldName = fieldName;
         this.fieldType = fieldType;
+    }
+
+    public Field(String fieldName, String fieldTitle, String fieldType, String helpText) {
+        this(fieldName, fieldTitle, fieldType);
+        this.helpText = helpText;
+    }
+
+    public Field(String fieldName, String fieldTitle, String fieldType, Integer width, Integer height) {
+        this(fieldName, fieldTitle, fieldType);
+        this.width = width;
+        this.height = height;
     }
 
     public ArrayList<String> getStrings() {
@@ -86,6 +92,14 @@ public class Field {
 
     public String getHelpText() {
         return helpText;
+    }
+
+    public Integer getWidth() {
+        return width;
+    }
+
+    public Integer getHeight() {
+        return height;
     }
 
 }
