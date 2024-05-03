@@ -19,6 +19,20 @@ public class Field {
     }
 
     public Field(String fieldName, String fieldTitle, String fieldType) {
+        if (fieldTitle.equals("")) {
+            String[] fieldTitleArr = fieldName.split("_");
+            for (String s : fieldTitleArr) fieldTitle += s.substring(0,1).toUpperCase() + s.substring(1).toLowerCase() + " ";
+            fieldTitle = fieldTitle.substring(0,fieldTitle.length()-1); //removes the trailing space
+        }
+        this.fieldTitle = fieldTitle;
+        this.fieldName = fieldName;
+        this.fieldType = fieldType;
+    }
+
+    public Field(String fieldName, String fieldType) {
+        String[] fieldTitleArr = fieldName.split("_");
+        String fieldTitle = "";
+        for (String s : fieldTitleArr) fieldTitle += s.substring(0,1).toUpperCase() + s.substring(1).toLowerCase() + " ";
         this.fieldTitle = fieldTitle;
         this.fieldName = fieldName;
         this.fieldType = fieldType;
