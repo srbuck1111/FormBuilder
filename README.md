@@ -1,6 +1,6 @@
 To run the application:
   Have Java installed.
-  Run Launcher.java from the FormBuilder folder.
+  Run Launcher.java from the application folder.
 
 Adding image fields is currently not supported fully; width and hieght still need to be manually populated.
 
