@@ -40,7 +40,7 @@ public class EditField extends JPanel {
         add(fieldInput);
 
         add(new JLabel("Type: "));
-        String[] fieldTypes = {"Text","Long Text","Image","Decimal","Document"};
+        String[] fieldTypes = {"Text","Text Area","Long Text","Checkbox","Image","Decimal","Document"};
         typeInput = new JComboBox<String>(fieldTypes);
         typeInput.setPreferredSize(new Dimension(100,20));
         add(typeInput);

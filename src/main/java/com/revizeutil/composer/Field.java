@@ -19,6 +19,7 @@ public class Field {
     }
 
     public Field(String fieldName, String fieldTitle, String fieldType) {
+        System.out.println("Field Info: "+fieldType+" : "+fieldName);
         if (fieldTitle.equals("")) {
             String[] fieldTitleArr = fieldName.split("_");
             for (String s : fieldTitleArr) fieldTitle += s.substring(0,1).toUpperCase() + s.substring(1).toLowerCase() + " ";
@@ -80,15 +81,17 @@ public class Field {
     // helper method to assign the correct reference file based on the field type
     private File getFileRef() {
         switch(this.fieldType) {
-            case "text_area":
+            case "Text Area":
                 return new File("src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\text-area.jsp");
-            case "long_text":
+            case "Long Text":
                 return new File("src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\long-text.jsp");
-            case "image":
+            case "Image":
                 return new File("src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\image.jsp");
-            case "document":
+            case "Document":
                 return new File("src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\document.jsp");
-            case "text": default:
+            case "Checkbox":
+                return new File("src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\checkbox.jsp");
+            case "Text": default:
                 return new File("src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\text.jsp");
         }
 
