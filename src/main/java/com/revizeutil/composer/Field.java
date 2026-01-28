@@ -50,11 +50,11 @@ public class Field {
         this.height = height;
     }
 
-    public ArrayList<String> getStrings() {
+    public ArrayList<String> getEditFieldStrings() {
         ArrayList<String> fieldStrings = new ArrayList<>();
         String line = null;
 
-        File refField = getFileRef();
+        File refField = getEditFieldRef();
 
         try {
             FileReader fr = new FileReader(refField);
@@ -65,7 +65,7 @@ public class Field {
                 if (line.contains("#WIDTH#")) line = line.replaceAll("#WIDTH#", width == null ? "250" : width.toString());
                 if (line.contains("#HEIGHT#")) line = line.replaceAll("#HEIGHT#", height == null ? "250" : height.toString());
                 if (line.contains("#HELPTEXT#")) {
-                    if (helpText == null) continue;
+                    if (helpText == null || helpText.equals("")) continue;
                     line = line.replaceAll("#HELPTEXT#", helpText);
                 }
                 fieldStrings.add(line);
@@ -78,8 +78,56 @@ public class Field {
         return fieldStrings;
     }
 
-    // helper method to assign the correct reference file based on the field type
-    private File getFileRef() {
+    public ArrayList<String> getListHeaderStrings() {
+        ArrayList<String> headerStrings = new ArrayList<>();
+        String line = null;
+
+        File refHeader = getListHeaderRef();
+        if (refHeader == null) return null;
+
+        try {
+            FileReader fr = new FileReader(refHeader);
+            BufferedReader br = new BufferedReader(fr);
+            while ((line = br.readLine()) != null) {
+                if (fieldTitle != null && line.contains("#FIELDTITLE#")) line = line.replaceAll("#FIELDTITLE#", fieldTitle);
+                if (line.contains("#HELPTEXT#")) {
+                    if (helpText == null || helpText.equals("")) continue;
+                    line = line.replaceAll("#HELPTEXT#", helpText);
+                }
+                headerStrings.add(line);
+            }
+            fr.close();
+            br.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return headerStrings;
+    }
+
+    public ArrayList<String> getListFieldStrings() {
+        ArrayList<String> fieldStrings = new ArrayList<>();
+        String line = null;
+
+        File refField = getListFieldRef();
+        if (refField == null) return null;
+
+        try {
+            FileReader fr = new FileReader(refField);
+            BufferedReader br = new BufferedReader(fr);
+            while ((line = br.readLine()) != null) {
+                if (fieldName != null && line.contains("#FIELDNAME#")) line = line.replaceAll("#FIELDNAME#", fieldName);
+                fieldStrings.add(line);
+            }
+            fr.close();
+            br.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return fieldStrings;
+    }
+
+    // helper methods to assign the correct reference file based on the field type
+    private File getEditFieldRef() {
         switch(this.fieldType) {
             case "Text Area":
                 return new File("src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\text-area.jsp");
@@ -91,10 +139,34 @@ public class Field {
                 return new File("src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\document.jsp");
             case "Checkbox":
                 return new File("src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\checkbox.jsp");
+            case "Date":
+                return new File("src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\date.jsp");
             case "Text": default:
                 return new File("src\\main\\java\\com\\revizeutil\\composer\\templates\\editform\\fields\\text.jsp");
         }
 
+    }
+
+    private File getListHeaderRef() {
+        switch(this.fieldType) {
+            case "Image":
+                return new File("src\\main\\java\\com\\revizeutil\\composer\\templates\\editlist\\headers\\image.jsp");
+            case "Long Text":
+                return null;
+            default:
+                return new File("src\\main\\java\\com\\revizeutil\\composer\\templates\\editlist\\headers\\text.jsp");
+        }
+    }
+
+    private File getListFieldRef() {
+        switch(this.fieldType) {
+            case "Image":
+                return new File("src\\main\\java\\com\\revizeutil\\composer\\templates\\editlist\\fields\\image.jsp");
+            case "Long Text":
+                return null;
+            default:
+                return new File("src\\main\\java\\com\\revizeutil\\composer\\templates\\editlist\\fields\\text.jsp");
+        }
     }
 
     public String getFieldName() {

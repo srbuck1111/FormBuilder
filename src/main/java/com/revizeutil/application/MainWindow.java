@@ -58,11 +58,11 @@ public class MainWindow extends JFrame {
             });
             footer.add(addFieldButton);
             
-            JButton createFormButton = new JButton("Create Edit Form");
+            JButton createFormButton = new JButton("Compose");
             createFormButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    createEditForm();
+                    composeFiles();
                     revalidate();
                 }
             });
@@ -83,8 +83,8 @@ public class MainWindow extends JFrame {
 
     }
 
-    private void createEditForm() {
-        fc = new FileComposer(header.getModule(),header.getTitle(),"form");
+    private void composeFiles() {
+        fc = new FileComposer(header.getModule(),header.getTitle(),header.isList());
         Component[] components = editFields.getComponents();
         for (Component component : components) {
             if (component instanceof EditField) {
@@ -98,7 +98,7 @@ public class MainWindow extends JFrame {
                 fc.addField(newField);
             }
         }
-        fc.composeEditForm();
+        fc.composeFiles();
     }
 
     private void importEditForm(String historyString) {

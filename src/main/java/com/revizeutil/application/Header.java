@@ -30,7 +30,7 @@ public class Header extends JPanel {
         moduleInput.setPreferredSize(new Dimension(100,20));
         add(moduleInput);
 
-        add(new JLabel("List?: "));
+        add(new JLabel("Has List?: "));
         isListInput = new JCheckBox();
         add(isListInput);
 
